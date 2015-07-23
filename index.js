@@ -1,6 +1,6 @@
 'use strict';
 var React = require('react');
-var MemoryNotify = React.createClass({
+var Notify = React.createClass({
 	key: 0,
 	getInitialState: function() {
 		return {};
@@ -35,7 +35,7 @@ var MemoryNotify = React.createClass({
 		var state = this.state;
 		var hide = this.hideNotification;
 		var el = keys.map(function(key) {
-			return <Notify id={key}
+			return <Item id={key}
 										 key={key}
 										 theme={state[key].theme}
 										 hideNotification={hide}
@@ -46,7 +46,7 @@ var MemoryNotify = React.createClass({
 		return (<div className="notify-container">{el}</div>);
 	}
 });
-var Notify = React.createClass({
+var Item = React.createClass({
 	hideNotification: function() {
 		this.props.hideNotification(this.props.id);
 	},
@@ -60,4 +60,4 @@ var Notify = React.createClass({
 		)
 	}
 });
-module.exports = MemoryNotify;
+module.exports = Notify;
