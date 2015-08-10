@@ -1,5 +1,7 @@
 # ReactNotify
 
+## ** [You can see demo here](http://k4wo.github.io/react-notify/public/) **
+
 Module of React that shows notifications / warnings. Just pass three arguments and it's all.
 * Title
 * Message (body)
