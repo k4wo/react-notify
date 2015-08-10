@@ -1,5 +1,5 @@
 {
-  "name": "React Notify",
+  "name": "react-notify",
   "version": "1.0.0",
   "description": "Tiny React's module that shows notifications.",
   "main": "index.js",
