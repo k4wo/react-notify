@@ -1,0 +1,34 @@
+{
+  "name": "react-notify",
+  "version": "1.0.0",
+  "description": "Tiny React's module that shows notifications.",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^1.6.1",
+    "jsx-loader": "^0.13.2",
+    "react-hot-loader": "^1.2.8",
+    "webpack": "^1.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k4wo/ReactNotify.git"
+  },
+  "keywords": [
+    "react",
+    "notification",
+    "notifier",
+    "notify"
+  ],
+  "author": "k4wo <k4wo@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/k4wo/ReactNotify/issues"
+  },
+  "homepage": "https://github.com/k4wo/ReactNotify"
+}
