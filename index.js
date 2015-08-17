@@ -17,7 +17,7 @@ var Notify = React.createClass({
 	addNotify: function(title, msg, time, theme) {
 		var key = this.key++;
 		this.state[key] = { title: title, msg: msg, time: time, theme: theme };
-		this.setState(this.state);
+		this.forceUpdate();
 		this.countToHide(time, key);
 	},
 	countToHide: function(duration, key) {
@@ -28,7 +28,7 @@ var Notify = React.createClass({
 	},
 	hideNotification: function(key) {
 		delete this.state[key];
-		this.setState(this.state);
+		this.forceUpdate();
 	},
 	render: function() {
 		var keys = Object.keys(this.state);
