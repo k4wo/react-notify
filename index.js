@@ -1,70 +1,70 @@
-'use strict';
-var React = require('react');
+import React, {Component} from 'react';
 
+export default class Notify extends Component {
 
-var Notify = React.createClass({
-	displayName: "Notify",
-	key: 0,
-	getInitialState: function() {
-		return {};
-	},
-	success: function(title, msg, time) {
-		this.addNotify(title, msg, time, 'success');
-	},
-	error: function(title, msg, time) {
-		this.addNotify(title, msg, time, 'error');
-	},
-	info: function(title, msg, time) {
-		this.addNotify(title, msg, time, 'info');
-	},
-	addNotify: function(title, msg, time, theme) {
-		var key         = this.key++;
-		this.state[key] = { title: title, msg: msg, time: time, theme: theme };
-		this.setState(this.state);
-		this.countToHide(time, key);
-	},
-	countToHide: function(duration, key) {
-		var that = this;
-		setTimeout(function() {
-			that.hideNotification(key);
-		}, duration);
-	},
-	hideNotification: function(key) {
-		delete this.state[key];
-		this.setState(this.state);
-	},
-	render: function() {
-		var keys  = Object.keys(this.state);
-		var state = this.state;
-		var hide  = this.hideNotification;
-		var el    = keys.map(function(key) {
-			return React.createElement(Item, {
-						id: key,
-						key: key,
-						theme: state[key].theme,
-						hideNotification: hide,
-						title: state[key].title,
-						msg: state[key].msg
-					}
-			)
-		});
-		return (React.createElement("div", { className: "notify-container" }, el));
-	}
-});
+  constructor() {
+    super();
+    this.isMounted = true;
+    this.key       = 0;
+    this.state     = {};
+  }
 
-var Item = React.createClass({
-	displayName: "Item",
-	hideNotification: function() {
-		this.props.hideNotification(this.props.id);
-	},
-	render: function() {
-		return (
-				React.createElement("div", { className: "notify-item " + this.props.theme, onClick: this.hideNotification },
-						React.createElement("p", { className: "notify-title" }, this.props.title),
+  componentWillUnmount() {
+    this.isMountedd = false;
+  }
 
-						React.createElement("p", { className: "notify-body" }, this.props.msg)
-				)
-		)
-	}
-});
-module.exports = Notify;
+  success(title, msg, time) {
+    this.addNotify(title, msg, time, 'success');
+  }
+
+  error(title, msg, time) {
+    this.addNotify(title, msg, time, 'error');
+  }
+
+  info(title, msg, time) {
+    this.addNotify(title, msg, time, 'info');
+  }
+
+  addNotify(title, msg, time, theme) {
+    const key   = this.key++;
+    const state = Object.assign(this.state, { [key]: { title, msg, time, theme } });
+
+    this.setState(state, () => this.countToHide(time, key));
+  }
+
+  countToHide(duration, key) {
+    setTimeout(() => {
+      this.hideNotification(key);
+    }, duration);
+  }
+
+  hideNotification(key) {
+    if( !this.isMounted ) {
+      return;
+    }
+
+    this.setState((state) => {
+      delete state[key];
+      return state;
+    });
+  }
+
+  item(key) {
+    const { theme, title, msg } = this.state[key];
+
+    return (
+        <div key={key} className={`notify-item ${theme}`} onClick={() => this.hideNotification(key)}>
+          <p className="notify-title">{title}</p>
+          <p className="notify-body">{msg}</p>
+        </div>
+    );
+  }
+
+  render() {
+    const { state } = this;
+    const keys      = Object.keys(state);
+    const el        = keys.map((key) => this.item(key));
+
+    return <div className="notify-container">{el}</div>;
+  }
+}

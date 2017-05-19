@@ -1,16 +1,16 @@
 {
   "name": "react-notify",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Tiny React's module that shows notifications.",
-  "main": "index.js",
-  "dependencies": {
-    "react": ">=0.13.*"
-  },
+  "main": "app.js",
+  "dependencies": {},
   "devDependencies": {
-    "html-webpack-plugin": "^1.6.1",
-    "jsx-loader": "^0.13.2",
-    "react-hot-loader": "^1.2.8",
-    "webpack": "^1.11.0"
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^15.4.2",
+    "webpack": "^2.5.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
