@@ -1,30 +1,31 @@
-var React = require('react');
-var ReactNotify = require('../index');
+import ReactDom from 'react-dom';
+import React, {Component} from 'react';
+import ReactNotify from "react-notify";
 
-var App = React.createClass({
-	duration: function() {
-		return Math.round(Math.random() * 9) * 1000;
-	},
-	show: function() {
-		var r = Math.round(Math.random() * 2);
-		var arr = ['success', 'info', 'error'];
+export default class App extends Component {
 
-		this.notification(arr[r]);
-	},
-	notification: function(notify) {
-		var duration = this.duration();
-		var body = "Message - " + notify + ', Duration: ' + duration;
-		this.refs.notificator[notify]("Title - " + notify, body, duration);
-	},
-	render: function() {
+  show() {
+    const r   = Math.round(Math.random() * 2);
+    const arr = ['success', 'info', 'error'];
 
-		return (
-				<div>
-					<ReactNotify ref='notificator'/>
-					<button onClick={this.show}> Show</button>
-				</div>
-		)
-	}
-});
+    this.notification(arr[r]);
+  }
 
-React.render(<App/>, document.querySelector('body'));
+  notification(notify) {
+    const duration = Math.round(Math.random() * 9) * 1000;
+    const body     = "Message - " + notify + ', Duration: ' + duration;
+    this.refs.notificator[notify]("Title - " + notify, body, duration);
+  }
+
+  render() {
+
+    return (
+        <div>
+          <ReactNotify ref='notificator'/>
+          <button onClick={() => this.show()}> Show</button>
+        </div>
+    )
+  }
+}
+
+ReactDom.render(<App/>, document.querySelector('#app'));

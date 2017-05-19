@@ -46,3 +46,7 @@ body {
 .notify-title {
   font-weight: 700;
 }
+
+button {
+  padding: 10px 20px;
+}
