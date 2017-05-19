@@ -4,13 +4,13 @@ export default class Notify extends Component {
 
   constructor() {
     super();
-    this.isMounted = true;
+    this.wasMounted = true;
     this.key       = 0;
     this.state     = {};
   }
 
   componentWillUnmount() {
-    this.isMountedd = false;
+    this.wasMounted = false;
   }
 
   success(title, msg, time) {
@@ -39,7 +39,7 @@ export default class Notify extends Component {
   }
 
   hideNotification(key) {
-    if( !this.isMounted ) {
+    if( !this.wasMounted ) {
       return;
     }
 
